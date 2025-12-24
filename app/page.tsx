@@ -117,7 +117,7 @@ export default function Home() {
       >
      
 
-        <h1 className="glitch-text text-5xl font-bold mb-4 relative" data-text="Welcome to Timmy Turner">
+        <h1 className="glitch-text text-5xl font-bold mb-4 relative" >
           $ZephCat
         </h1>
        

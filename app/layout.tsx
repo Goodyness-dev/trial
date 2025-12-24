@@ -6,19 +6,19 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "Timmy Turner MemeCoin",
-  description: "Welcome to Timmy Turner’s MemeCoin community 🚀✨",
-  keywords: ["crypto", "meme coin", "Timmy Turner", "tokenomics", "web3"],
-  authors: [{ name: "Timmy Turner Devs" }],
+  title: " $ZephCat",
+  description: "Welcome to $ZephCat MemeCoin community 🚀✨",
+  keywords: ["crypto", "meme coin", "$ZephCat", "tokenomics", "web3"],
+  authors: [{ name: "$ZephCat Devs" }],
   openGraph: {
-    title: "Timmy Turner MemeCoin",
+    title: "$ZephCat MemeCoin",
     description: "Wish-granting community coin with Cosmo & Wanda 🪄💸",
     images: ["/pablo'simage2.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Timmy Turner MemeCoin",
-    description: "Join Timmy Turner’s crypto wish community 🚀✨",
+    title: "$ZephCat MemeCoin",
+    description: "Join $ZephCat's crypto wish community 🚀✨",
     images: ["/pablo'simage2.jpg"],
   },
   icons: {
