@@ -1,65 +1,204 @@
+"use client";
 import Image from "next/image";
+import { Twitter, Send } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect , useRef} from "react";
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default function Home() {
+
+
+
+  // Tokenomics cards scroll animation
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    gsap.from(".token-card", {
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      stagger: 0.3,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".tokenomics-section",
+        start: "top 80%",
+        toggleActions: "restart none none restart", 
+      },
+    });
+  }, []);
+
+ 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    gsap.from(".roadmap-item", {
+      opacity: 0,
+      x: -50,
+      duration: 0.8,
+      stagger: 0.25,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".roadmap-section",
+        start: "top 80%",
+        toggleActions: "restart none none restart",
+      },
+    });
+  }, []);
+
+  // Glitch effect on heading
+  useEffect(() => {
+    gsap.to(".glitch-text", {
+      x: () => gsap.utils.random(-5, 5),
+      y: () => gsap.utils.random(-2, 2),
+      skewX: () => gsap.utils.random(-5, 5),
+      repeat: -1,
+      duration: 0.05,
+      yoyo: true,
+      ease: "none",
+    });
+
+    gsap.to(".glitch-text", {
+      x: 50,
+      duration: 0.2,
+      repeat: -1,
+      repeatDelay: 5,
+      yoyo: true,
+      ease: "power4.out",
+    });
+  }, []);
+
+  // Neon breathing background
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const root = document.documentElement;
+
+    root.style.setProperty("--grad1", "#0f0f0f");
+    root.style.setProperty("--grad2", "#000000");
+
+    const tl = gsap.timeline({ repeat: -1, yoyo: true, defaults: { duration: 6, ease: "sine.inOut" } });
+    tl.to(root, { "--grad1": "#1a0033", "--grad2": "#000000" }) // deep purple
+      .to(root, { "--grad1": "#6a0dad", "--grad2": "#000000" }) // blue glow
+      .to(root, { "--grad1": "#4b0082", "--grad2": "#000000" }) // green glow
+      .to(root, { "--grad1": "#000000", "--grad2": "#000000" }); // red glow
+  }, []);
+
+  
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+
+    <main className="main text-white min-h-screen font-sans relative overflow-hidden">
+    
+      <header className="bg-black/40 backdrop-blur-md border-b border-purple-900/40 top-0 z-50 fixed w-full">
+        <nav className="max-w-6xl mx-auto flex items-center justify-between py-4 px-6">
+          <div className="flex items-center gap-3">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/pablo'simage.jpg"
+              alt="coin Logo"
+              width={40}
+              height={40}
+              className="rounded-full"
             />
-            Deploy Now
+            <span className="text-xl font-bold text-cyan-300 tracking-wide">
+               $ZephCat
+            </span>
+          </div>
+        </nav>
+      </header>
+
+      <div className="h-14"></div>
+      <div className="scanlines pointer-events-none absolute inset-0 z-50"></div>
+
+     <div className="h-4"></div>
+      <section
+        className="flex flex-col text-center bg-cover bg-center bg-no-repeat justify-center items-center pt-20 py-20 px-6 relative"
+        style={{ backgroundImage: "url('/pablo\\'simage2.jpg')" }}
+      >
+     
+
+        <h1 className="glitch-text text-5xl font-bold mb-4 relative" data-text="Welcome to Timmy Turner">
+          $ZephCat
+        </h1>
+       
+        <a
+          href="the link"
+          className=" px-6 py-3 rounded-2xl font-semibold shadow-lg hover:scale-105 transition  bg-black border border-cyan-300 text-cyan-300 "
+        >
+          Join Telegram
+        </a>
+      </section>
+
+
+      <section className="py-16 px-6 max-w-5xl mx-auto text-center">
+        <div className="bg-black/40 border border-cyan-500 rounded-2xl shadow-[0_0_20px_#00e5ff]  p-6">
+        <h2 className="text-3xl font-bold mb-4 text-cyan-200">About $ZephCat</h2>
+        <p className="text-sm text-gray-300">
+          I was born one week ago from today, and I am already making waves in the crypto world!. $ZephCat is here to bring fun, community, and a touch of magic to the meme coin universe. Join us on this exciting journey to the moon and beyond! 🚀✨
+        </p>
+        </div>
+
+   
+      </section>
+
+     
+      <section className="tokenomics-section py-16 px-6 bg-black/30">
+
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6 text-cyan-200 text-neon">Tokenomics</h2>
+       
+         
+          <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-black/60 p-6 rounded-2xl shadow-xl token-card border border-cyan-900/40">
+              <h3 className="text-xl font-semibold mb-2">30% Liquidity</h3>
+              <p>Keeps trading smooth & stable 💧</p>
+            </div>
+           
+            <div className="bg-black/60 p-6 rounded-2xl shadow-xl token-card border border-cyan-900/40">
+              <h3 className="text-xl font-semibold mb-2">50% Community</h3>
+              <p>Half of the coin goes to the people. No whales allowed 🐳.</p>
+            </div>
+         
+            <div className="bg-black/60 p-6 rounded-2xl shadow-xl token-card border border-cyan-900/40">
+              <h3 className="text-xl font-semibold mb-2">10% Team Admins</h3>
+              <p>Fuel for devs & mods — keeping the rocket alive 🚀</p>
+            </div>
+             <div className="bg-black/60 p-6 rounded-2xl shadow-xl token-card border border-cyan-900/40">
+              <h3 className="text-xl font-semibold mb-2">10% Game and tech</h3>
+              <p>Funds for meme games & future upgrades 🎮✨.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+     
+      
+
+  
+      <section className="roadmap-section py-16 px-6 max-w-5xl mx-auto text-center">
+        <h2 className="text-3xl font-bold mb-6 text-cyan-200">Roadmap</h2>
+        <ul className="space-y-4">
+          <li className="roadmap-item">✅ Launch MemeCoin and Telegram community</li>
+          <li className="roadmap-item">✅ Meme contest & first NFT drop</li>
+          <li className="roadmap-item">🚀 $ZephCat Game Launch (Coming Soon)</li>
+          <li className="roadmap-item">🌕  $ZephCat to the Moon!</li>
+        </ul>
+      </section>
+
+      
+      <footer className="bg-black/40 py-10 text-center border-t border-cyan-900/40">
+        <h3 className="text-xl font-semibold mb-4 text-cyan-200">Join the community</h3>
+        <div className="flex gap-6 justify-center">
+          <a href="https://" className="hover:text-yellow-400 flex items-center gap-2 px-4 py-2 transition rounded-lg">
+            <Send size={20} /> Telegram
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a href="https://" className="hover:text-yellow-400 flex items-center gap-2 px-4 py-2 transition rounded-lg">
+            <Twitter size={20} /> X
           </a>
         </div>
-      </main>
-    </div>
+        <p className="text-gray-400 mt-6">© 2025 $ZephCat. All rights reserved.</p>
+      </footer>
+    </main>
+    </>
   );
 }
